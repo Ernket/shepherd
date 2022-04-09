@@ -1,0 +1,13 @@
+"fofa":
+  "enable": true
+  "fofa_email": ""
+  "fofa_key": ""
+  "fofa_select": "domain=\"%s\" || cert=\"%s\" || host=\"%s\" || cname=\"%s\""
+
+"quake":
+  "enable": true
+  "quake_key": ""
+  "quake_select": "domain: %s || cert: %s || owner: %s || hostname: %s"
+
+
+  
