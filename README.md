@@ -12,6 +12,7 @@
 - 使用方法
 ```
 python3 Elapse.py -d <domain>
+python3 Elapse.py -f <filename>
 ```
 - 更新
 - - 2022/05/11
