@@ -3,8 +3,12 @@ import json
 import base64
 
 def fofa_search(all_config,excel,data,xlsx_save_name,domain):
-    w_excel=excel.create_sheet("fofa",0)
-    w_excel.append(data)            #添加title
+    all_sheet=excel.sheetnames
+    if "fofa" in all_sheet:         #查看是否存在fofa这个sheet
+        w_excel=excel["fofa"]
+    else:
+        w_excel=excel.create_sheet("fofa",0)            #如果没有则新建
+        w_excel.append(data)            #添加title
     email=all_config["fofa"]["fofa_email"]
     key=all_config["fofa"]["fofa_key"]
     select=all_config["fofa"]["fofa_select"]
@@ -42,7 +46,7 @@ def fofa_search(all_config,excel,data,xlsx_save_name,domain):
         #print("当前第"+str(page_num)+"页 "+"条目："+str(len(result['results'])))         #显示当前页数有多少条数据
         
         for link in result['results']:
-            link.insert(0,'fofa')
+            link.insert(0,domain)
             try:
                 w_excel.append(link)
             except:
