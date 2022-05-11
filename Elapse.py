@@ -17,11 +17,9 @@ py_path=os.path.dirname(os.path.realpath(__file__))         #获取py文件的�
 xlsx_save_name=str(py_path)+'/result/result-'+str(time.time_ns())+".xlsx"           #路径拼接、保存至result目录下
 
 domain=args.domain          #获取域名
-CompanyName=args.companyname            #获取公司名
 domainfile=args.domainfile            #获取文件里的域名
-companyfile=args.companyfile
 
-if domain==None and domainfile==None:          #公司名或者域名或者文件必须给一个
+if domain==None and domainfile==None:          #域名或者文件必须给一个
     print("[-] 未指定域名或公司名")
     exit()
 
