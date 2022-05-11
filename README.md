@@ -15,8 +15,9 @@ python3 Elapse.py -d <domain>
 ```
 - 更新
 - - 2022/05/11
-加入了两个新的模块（hunter、zoomeye）
-加入了-f，读取文件批量访问
+
+1.加入了两个新的模块（hunter、zoomeye）
+2.加入了-f，读取文件批量访问
 
 - 计划写的
 
