@@ -18,7 +18,7 @@ python3 Elapse.py -f <filename>
 - - 2022/05/11
 
 1.加入了两个新的模块（hunter、zoomeye）<br>
-2.加入了-f，读取文件批量访问<br>
+2.加入了-f，读取文件批量获取<br>
 
 - 计划写的
 - - 将其他平台也添加进来
