@@ -7,7 +7,17 @@
 "quake":
   "enable": true
   "quake_key": ""
-  "quake_select": "domain: %s || cert: %s || owner: %s || hostname: %s"
+  "quake_select": "domain: %s || cert: %s || hostname: %s"
+
+"zoomeye":
+  "enable": true
+  "zoomeye_key": ""
+
+"hunter":
+  "enable": true
+  "hunter_username": ""
+  "hunter_key": ""
+  "hunter_select": "domain=\"%s\"||cert=\"%s\""
 
 
   
