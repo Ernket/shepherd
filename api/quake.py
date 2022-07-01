@@ -2,19 +2,24 @@ import requests
 import json
 import time
 
-def quake_search(all_config,excel,data,xlsx_save_name,domain):
-    all_sheet=excel.sheetnames
-    if "quake" in all_sheet:         #查看是否存在quake这个sheet
-        w_excel=excel["quake"]
-    else:
-        w_excel=excel.create_sheet("quake",0)            #如果没有则新建
-        w_excel.append(data)            #添加title
+def quake_search(all_config,excel,data,xlsx_save_name,domain,check):
+    if check=="select_domain":
+        all_sheet=excel.sheetnames
+        if "quake" in all_sheet:         #查看是否存在quake这个sheet
+            w_excel=excel["quake"]
+        else:
+            w_excel=excel.create_sheet("quake",0)            #如果没有则新建
+            w_excel.append(data)            #添加title
+    elif check=="select_proxy":
+        all_proxys={}
 
     quake_api=all_config.get('quake').get('quake_key')
     select=all_config['quake']['quake_select']
     
-
-    quake_search=select.replace('%s',domain)         #将查询语句中的%s替换为用户指定的值domain
+    if check=="select_domain":
+        quake_search=select.replace('%s',domain)         #将查询语句中的%s替换为用户指定的值domain
+    elif check=="select_proxy":
+        quake_search=all_config.get('proxy').get('quake_proxy')
     
     headers = {
         "X-QuakeToken": quake_api
@@ -92,10 +97,15 @@ def quake_search(all_config,excel,data,xlsx_save_name,domain):
             title="null"
         #print("ip: {} port: {} title: {}".format(ip,port,title))
         try:
-            w_excel.append([domain,ip,port,title,http_host,http_response,cert,transport,asn,org,country_cn,province_cn,city_cn,district_cn,product_catalog,product_type,product_level,product_vendor,hostname,country_en,province_en,city_en,district_en,isp,body])
+            if check=="select_domain":
+                w_excel.append([domain,ip,port,title,http_host,http_response,cert,transport,asn,org,country_cn,province_cn,city_cn,district_cn,product_catalog,product_type,product_level,product_vendor,hostname,country_en,province_en,city_en,district_en,isp,body])
+            elif check=="select_proxy":
+                all_proxys[str(ip)]=port
         except:
             continue
     #,product_catalog,product_type,product_level,product_vendor
-    excel.save(xlsx_save_name)
     print("[+] quake模块已完成")
-    time.sleep(4)
+    if check=="select_domain":
+        excel.save(xlsx_save_name)
+    elif check=="select_proxy":
+        return all_proxys

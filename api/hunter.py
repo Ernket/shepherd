@@ -14,7 +14,7 @@ def get_datetime():
 def hunter_search(all_config,excel,data,xlsx_save_name,domain):
     print("[+] 正在执行hunter模块")
     all_sheet=excel.sheetnames
-    if "hunter" in all_sheet:         #查看是否存在fofa这个sheet
+    if "hunter" in all_sheet:         #查看是否存在hunter这个sheet
         w_excel=excel["hunter"]
     else:
         w_excel=excel.create_sheet("hunter",0)            #如果没有则新建
@@ -48,7 +48,7 @@ def hunter_search(all_config,excel,data,xlsx_save_name,domain):
                     print("[-] hunter查询页面数据为空，正在尝试下一页")
                     try_num+=1
                     pass
-                else:          
+                else:
                     print("[+] hunter模块已完成")
                     break
             for i in all_data:
@@ -57,7 +57,7 @@ def hunter_search(all_config,excel,data,xlsx_save_name,domain):
                 ip=i.get('ip')
                 port=i.get('port')
                 web_title=i.get('web_title')
-                domain=i.get('domain')
+                data_domain=i.get('domain')
                 is_risk_protocol=i.get('is_risk_protocol')
                 protocol=i.get('protocol')
                 base_protocol=i.get('base_protocol')
@@ -74,7 +74,7 @@ def hunter_search(all_config,excel,data,xlsx_save_name,domain):
                 as_org=i.get('as_org')
                 isp=i.get('isp')
                 banner=i.get('banner')
-                w_excel.append([domain,url,ip,domain,port,web_title,status_code,is_web,is_risk,is_risk_protocol,protocol,base_protocol,str(component),os,company,number,country,province,city,updated_at,as_org,isp,banner])
+                w_excel.append([domain,url,ip,data_domain,port,web_title,status_code,is_web,is_risk,is_risk_protocol,protocol,base_protocol,str(component),os,company,number,country,province,city,updated_at,as_org,isp,banner])
             
             pagenum+=1
         except:
