@@ -140,7 +140,7 @@ if domains:
         hostcollide_enable=all_config.get('hostcollide').get('enable')
         if hostcollide_enable:
             if fofa_ips:
-                hostCollideResult, censysIPS = run_hostCollide(domain, fofa_ips)
+                hostCollideResult, censysIPS = run_hostCollide(domain, fofa_ips, all_config)
             else:
                 print("[-] 不进行host碰撞...")
         else:
