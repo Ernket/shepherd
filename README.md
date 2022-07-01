@@ -23,6 +23,7 @@ python3 Elapse.py -f <filename>
 - - 2022/07/01
 
 1.部分模块写了异常处理，一个模块报错不影响了（之前发方便排错没写）<br>
+2.增加了利用fofa搜索全网无需验证的socks5代理，并输出.ppx文件（Proxifier代理转发工具的配置文件)，为了方便配合[gost](https://github.com/ginuerzh/gost)，result目录下也会输出一份.txt<br>
 2.加入了icp备案模块、爱企查、host碰撞模块（censys、fofa）<br>
 3.icp备案模块和空间测绘搜索的进行了融合，假设-d参数只给了一个域名，在icp备案后发现存在其他域名时，会进行询问是否将同备案其他域名一起添加搜素
 3.修复了我忘了什么的bug<br>
