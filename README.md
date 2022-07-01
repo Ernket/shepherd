@@ -11,8 +11,12 @@
 
 - 使用方法
 ```
+# 查询域名
 python3 Elapse.py -d <domain>
+# 通过公司名查控股等
 python3 Elapse.py -f <filename>
+# 查代理并验证
+python3 Elapse.py -p
 ```
 - 更新
 - - 2022/05/11
