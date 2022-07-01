@@ -12,9 +12,9 @@
 - 使用方法
 ```
 # 查询域名
-python3 Elapse.py -d <domain>
+python3 Elapse.py -d <domain> | python3 Elape.py -df <domain_file>
 # 通过公司名查控股等
-python3 Elapse.py -f <filename>
+python3 Elapse.py -c <company_name> | python3 Elapse.py -cf <company_name_file>
 # 查代理并验证
 python3 Elapse.py -p
 ```
