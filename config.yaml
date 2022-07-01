@@ -3,11 +3,15 @@
   "fofa_email": ""
   "fofa_key": ""
   "fofa_select": "domain=\"%s\" || cert=\"%s\" || host=\"%s\" || cname=\"%s\""
+  "fofa_ip": "ip=\"%s\""
 
 "quake":
   "enable": true
   "quake_key": ""
   "quake_select": "domain: %s || cert: %s || hostname: %s"
+
+"aiqicha":
+  "enable": true
 
 "zoomeye":
   "enable": true
@@ -19,5 +23,15 @@
   "hunter_key": ""
   "hunter_select": "domain=\"%s\"||cert=\"%s\""
 
-
+"hostcollide":
+  "enable": true
   
+"censys":
+  "enable": true
+  "censys_api": ""
+  "censys_secret": ""
+
+"proxy":
+  "enable": true
+  "fofa_proxy": "protocol=\"socks5\"&&\"Method:No Authentication(0x00)\"&&country=\"CN\""
+  "quake_proxy": "protocol:socks5"
