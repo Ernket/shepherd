@@ -20,7 +20,18 @@ python3 Elapse.py -f <filename>
 1.加入了两个新的模块（hunter、zoomeye）<br>
 2.加入了-f，读取文件批量获取<br>
 
+-- 2022/07/01
+
+1.部分模块写了异常处理，一个模块报错不影响了（之前发方便排错没写）<br>
+2.加入了icp备案模块、爱企查、host碰撞模块（censys、fofa）<br>
+3.icp备案模块和空间测绘搜索的进行了融合，假设-d参数只给了一个域名，在icp备案后发现存在其他域名时，会进行询问是否将同备案其他域名一起添加搜素
+3.修复了我忘了什么的bug<br>
+
 - 计划写的
 - - 将其他平台也添加进来（shodan，搜索引擎，还有什么空间测绘可以用的也可以推荐一下）
   - 指纹识别
   - 没检测到config.yaml时，自动生成
+
+- 参考项目：
+- - 爱企查、host碰撞模块（https://github.com/0x727/ShuiZe_0x727) 
+- - icp域名备案查询（https://github.com/1in9e/icp-domains）
