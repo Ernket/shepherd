@@ -80,7 +80,7 @@ def check_proxy(all_proxy,file_path):
                 if r.status_code == 200:
                     print('【{}】{}----验证成功'.format(threading.current_thread().name,web_proxy))
                     ok_list[key]=all_proxy[key]
-                    proxy_file=open(file_path+"/result/{}.txt".format(str(time.time_ns())),'a',encoding='utf-8')
+                    proxy_file=open(file_path+"/result/proxy_list.txt",'w',encoding='utf-8')
                     proxy_file.write(str(ip_port))
                     proxy_file.close()
             except Exception as e:
