@@ -21,6 +21,10 @@ python3 Elapse.py -c <company_name> | python3 Elapse.py -cf <company_name_file>
 # 查代理并验证
 python3 Elapse.py -p
 ```
+使用前请先安装所需要的运行库<br>
+```
+pip install -r requirements.txt
+```
 - 更新
 - - 2022/05/11
 
