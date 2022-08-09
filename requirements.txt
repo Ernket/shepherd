@@ -1,0 +1,11 @@
+beautifulsoup4==4.11.1
+chardet==3.0.4
+colorama==0.4.1
+IPy==1.01
+opencv_python==4.5.1.48
+openpyxl==3.0.10
+PyExecJS==1.5.1
+PyYAML==6.0
+requests==2.28.1
+tqdm==4.51.0
+urllib3==1.25.8
