@@ -75,7 +75,7 @@ def hunter_search(all_config,excel,data,xlsx_save_name,domain):
                 isp=i.get('isp')
                 banner=i.get('banner')
                 w_excel.append([domain,url,ip,data_domain,port,web_title,status_code,is_web,is_risk,is_risk_protocol,protocol,base_protocol,str(component),os,company,number,country,province,city,updated_at,as_org,isp,banner])
-            
+            excel.save(xlsx_save_name)
             pagenum+=1
         except:
             #print(req.text)

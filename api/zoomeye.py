@@ -42,5 +42,6 @@ def zoomeye_search(all_config,excel,data,xlsx_save_name,domain):
             ip=i.get('ip')
             w_excel.append([domain,name,timestamp,str(ip)])
             #print(name,timestamp,ip)
+        excel.save(xlsx_save_name)
         pagenum+=1
     excel.save(xlsx_save_name)

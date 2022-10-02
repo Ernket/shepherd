@@ -32,77 +32,77 @@ TIMEOUT = 20
 invest_infos = []
 holds_infos = []
 branch_infos = []
-    
+Sheet_line=1
+
 def saveAiqicha(excel,xlsx_save_name,selfIcpinfo_infos, invest_infos, holds_infos, branch_infos):
-    Sheet_line=1
+    global Sheet_line
     all_sheet=excel.sheetnames
     if "爱企查" in all_sheet:
         w_excel=excel["爱企查"]
     else:
         w_excel=excel.create_sheet("爱企查",0)
 
-        if Sheet_line == 1:
-            w_excel.cell(Sheet_line, 1).value = '备案信息'
-            w_excel.cell(Sheet_line, 2).value = '网站名称'
-            w_excel.cell(Sheet_line, 3).value = '域名'
-            w_excel.cell(Sheet_line, 4).value = '备案号'
-            Sheet_line += 1
+    w_excel.cell(Sheet_line, 1).value = '备案信息'
+    w_excel.cell(Sheet_line, 2).value = '网站名称'
+    w_excel.cell(Sheet_line, 3).value = '域名'
+    w_excel.cell(Sheet_line, 4).value = '备案号'
+    Sheet_line += 1
 
-        for _ in selfIcpinfo_infos:
-            siteName, domain, icpNo = _["siteName"], _["domain"], _["icpNo"]
-            w_excel.cell(Sheet_line, 1).value = '备案信息'
-            w_excel.cell(Sheet_line, 2).value = siteName
-            w_excel.cell(Sheet_line, 3).value = str(domain)
-            w_excel.cell(Sheet_line, 4).value = icpNo
-            Sheet_line += 1
-
-
-
-
-
-
-        Sheet_line += 1
-        w_excel.cell(Sheet_line, 1).value = '对外投资'
-        w_excel.cell(Sheet_line, 2).value = '公司名'
-        w_excel.cell(Sheet_line, 3).value = '投资占比'
-        w_excel.cell(Sheet_line, 4).value = 'pid'
-        w_excel.cell(Sheet_line, 5).value = '网站名称'
-        w_excel.cell(Sheet_line, 6).value = '域名'
-        w_excel.cell(Sheet_line, 7).value = '备案号'
-        w_excel.cell(Sheet_line, 8).value = '邮箱地址'
-        w_excel.cell(Sheet_line, 9).value = '联系方式'
+    for _ in selfIcpinfo_infos:
+        siteName, domain, icpNo = _["siteName"], _["domain"], _["icpNo"]
+        w_excel.cell(Sheet_line, 1).value = '备案信息'
+        w_excel.cell(Sheet_line, 2).value = siteName
+        w_excel.cell(Sheet_line, 3).value = str(domain)
+        w_excel.cell(Sheet_line, 4).value = icpNo
         Sheet_line += 1
 
-        for _ in invest_infos:
-            pid, invest_info, icp_info, companyDetail_infos = _["pid"], _["invest_info"], _["icp_info"], _["companyDetail_infos"]
-            entName, regRate = invest_info["entName"], invest_info["regRate"]
-            emails, telephone = companyDetail_infos["emails"], companyDetail_infos["telephone"]
 
-            if icp_info:
-                for each_icp in icp_info:
-                    # print(each_icp)
-                    siteName, domain, icpNo = each_icp["siteName"], each_icp["domain"], each_icp["icpNo"]
-                    w_excel.cell(Sheet_line, 1).value = '对外投资'
-                    w_excel.cell(Sheet_line, 2).value = entName
-                    w_excel.cell(Sheet_line, 3).value = regRate
-                    w_excel.cell(Sheet_line, 4).value = pid
-                    w_excel.cell(Sheet_line, 5).value = siteName
-                    w_excel.cell(Sheet_line, 6).value = str(domain)
-                    w_excel.cell(Sheet_line, 7).value = icpNo
-                    w_excel.cell(Sheet_line, 8).value = str(emails)
-                    w_excel.cell(Sheet_line, 9).value = str(telephone)
-                    Sheet_line += 1
-            else:
+
+
+
+
+    Sheet_line += 1
+    w_excel.cell(Sheet_line, 1).value = '对外投资'
+    w_excel.cell(Sheet_line, 2).value = '公司名'
+    w_excel.cell(Sheet_line, 3).value = '投资占比'
+    w_excel.cell(Sheet_line, 4).value = 'pid'
+    w_excel.cell(Sheet_line, 5).value = '网站名称'
+    w_excel.cell(Sheet_line, 6).value = '域名'
+    w_excel.cell(Sheet_line, 7).value = '备案号'
+    w_excel.cell(Sheet_line, 8).value = '邮箱地址'
+    w_excel.cell(Sheet_line, 9).value = '联系方式'
+    Sheet_line += 1
+
+    for _ in invest_infos:
+        pid, invest_info, icp_info, companyDetail_infos = _["pid"], _["invest_info"], _["icp_info"], _["companyDetail_infos"]
+        entName, regRate = invest_info["entName"], invest_info["regRate"]
+        emails, telephone = companyDetail_infos["emails"], companyDetail_infos["telephone"]
+
+        if icp_info:
+            for each_icp in icp_info:
+                # print(each_icp)
+                siteName, domain, icpNo = each_icp["siteName"], each_icp["domain"], each_icp["icpNo"]
                 w_excel.cell(Sheet_line, 1).value = '对外投资'
                 w_excel.cell(Sheet_line, 2).value = entName
                 w_excel.cell(Sheet_line, 3).value = regRate
                 w_excel.cell(Sheet_line, 4).value = pid
-                w_excel.cell(Sheet_line, 5).value = ""
-                w_excel.cell(Sheet_line, 6).value = ""
-                w_excel.cell(Sheet_line, 7).value = ""
+                w_excel.cell(Sheet_line, 5).value = siteName
+                w_excel.cell(Sheet_line, 6).value = str(domain)
+                w_excel.cell(Sheet_line, 7).value = icpNo
                 w_excel.cell(Sheet_line, 8).value = str(emails)
                 w_excel.cell(Sheet_line, 9).value = str(telephone)
                 Sheet_line += 1
+        else:
+            w_excel.cell(Sheet_line, 1).value = '对外投资'
+            w_excel.cell(Sheet_line, 2).value = entName
+            w_excel.cell(Sheet_line, 3).value = regRate
+            w_excel.cell(Sheet_line, 4).value = pid
+            w_excel.cell(Sheet_line, 5).value = ""
+            w_excel.cell(Sheet_line, 6).value = ""
+            w_excel.cell(Sheet_line, 7).value = ""
+            w_excel.cell(Sheet_line, 8).value = str(emails)
+            w_excel.cell(Sheet_line, 9).value = str(telephone)
+            Sheet_line += 1
 
 
 
@@ -110,48 +110,48 @@ def saveAiqicha(excel,xlsx_save_name,selfIcpinfo_infos, invest_infos, holds_info
 
 
 
-        Sheet_line += 1
-        w_excel.cell(Sheet_line, 1).value = '控股企业'
-        w_excel.cell(Sheet_line, 2).value = '公司名'
-        w_excel.cell(Sheet_line, 3).value = '投资占比'
-        w_excel.cell(Sheet_line, 4).value = 'pid'
-        w_excel.cell(Sheet_line, 5).value = '网站名称'
-        w_excel.cell(Sheet_line, 6).value = '域名'
-        w_excel.cell(Sheet_line, 7).value = '备案号'
-        w_excel.cell(Sheet_line, 8).value = '邮箱地址'
-        w_excel.cell(Sheet_line, 9).value = '联系方式'
-        Sheet_line += 1
+    Sheet_line += 1
+    w_excel.cell(Sheet_line, 1).value = '控股企业'
+    w_excel.cell(Sheet_line, 2).value = '公司名'
+    w_excel.cell(Sheet_line, 3).value = '投资占比'
+    w_excel.cell(Sheet_line, 4).value = 'pid'
+    w_excel.cell(Sheet_line, 5).value = '网站名称'
+    w_excel.cell(Sheet_line, 6).value = '域名'
+    w_excel.cell(Sheet_line, 7).value = '备案号'
+    w_excel.cell(Sheet_line, 8).value = '邮箱地址'
+    w_excel.cell(Sheet_line, 9).value = '联系方式'
+    Sheet_line += 1
 
 
-        for _ in holds_infos:
-            pid, holds_info, icp_info, companyDetail_infos = _["pid"], _["holds_info"], _["icp_info"], _["companyDetail_infos"]
-            entName, proportion = holds_info["entName"], holds_info["proportion"]
-            emails, telephone = companyDetail_infos["emails"], companyDetail_infos["telephone"]
+    for _ in holds_infos:
+        pid, holds_info, icp_info, companyDetail_infos = _["pid"], _["holds_info"], _["icp_info"], _["companyDetail_infos"]
+        entName, proportion = holds_info["entName"], holds_info["proportion"]
+        emails, telephone = companyDetail_infos["emails"], companyDetail_infos["telephone"]
 
-            if icp_info:
-                for each_icp in icp_info:
-                    siteName, domain, icpNo = each_icp["siteName"], each_icp["domain"], each_icp["icpNo"]
-                    w_excel.cell(Sheet_line, 1).value = '控股企业'
-                    w_excel.cell(Sheet_line, 2).value = entName
-                    w_excel.cell(Sheet_line, 3).value = proportion
-                    w_excel.cell(Sheet_line, 4).value = pid
-                    w_excel.cell(Sheet_line, 5).value = siteName
-                    w_excel.cell(Sheet_line, 6).value = str(domain)
-                    w_excel.cell(Sheet_line, 7).value = icpNo
-                    w_excel.cell(Sheet_line, 8).value = str(emails)
-                    w_excel.cell(Sheet_line, 9).value = str(telephone)
-                    Sheet_line += 1
-            else:
+        if icp_info:
+            for each_icp in icp_info:
+                siteName, domain, icpNo = each_icp["siteName"], each_icp["domain"], each_icp["icpNo"]
                 w_excel.cell(Sheet_line, 1).value = '控股企业'
                 w_excel.cell(Sheet_line, 2).value = entName
                 w_excel.cell(Sheet_line, 3).value = proportion
                 w_excel.cell(Sheet_line, 4).value = pid
-                w_excel.cell(Sheet_line, 5).value = ""
-                w_excel.cell(Sheet_line, 6).value = ""
-                w_excel.cell(Sheet_line, 7).value = ""
+                w_excel.cell(Sheet_line, 5).value = siteName
+                w_excel.cell(Sheet_line, 6).value = str(domain)
+                w_excel.cell(Sheet_line, 7).value = icpNo
                 w_excel.cell(Sheet_line, 8).value = str(emails)
                 w_excel.cell(Sheet_line, 9).value = str(telephone)
                 Sheet_line += 1
+        else:
+            w_excel.cell(Sheet_line, 1).value = '控股企业'
+            w_excel.cell(Sheet_line, 2).value = entName
+            w_excel.cell(Sheet_line, 3).value = proportion
+            w_excel.cell(Sheet_line, 4).value = pid
+            w_excel.cell(Sheet_line, 5).value = ""
+            w_excel.cell(Sheet_line, 6).value = ""
+            w_excel.cell(Sheet_line, 7).value = ""
+            w_excel.cell(Sheet_line, 8).value = str(emails)
+            w_excel.cell(Sheet_line, 9).value = str(telephone)
+            Sheet_line += 1
 
 
 
@@ -159,49 +159,50 @@ def saveAiqicha(excel,xlsx_save_name,selfIcpinfo_infos, invest_infos, holds_info
 
 
 
-        Sheet_line += 1
-        w_excel.cell(Sheet_line, 1).value = '分支机构'
-        w_excel.cell(Sheet_line, 2).value = '公司名'
-        w_excel.cell(Sheet_line, 3).value = 'pid'
-        w_excel.cell(Sheet_line, 4).value = '网站名称'
-        w_excel.cell(Sheet_line, 5).value = '域名'
-        w_excel.cell(Sheet_line, 6).value = '备案号'
-        w_excel.cell(Sheet_line, 7).value = '邮箱地址'
-        w_excel.cell(Sheet_line, 8).value = '联系方式'
-        Sheet_line += 1
+    Sheet_line += 1
+    w_excel.cell(Sheet_line, 1).value = '分支机构'
+    w_excel.cell(Sheet_line, 2).value = '公司名'
+    w_excel.cell(Sheet_line, 3).value = 'pid'
+    w_excel.cell(Sheet_line, 4).value = '网站名称'
+    w_excel.cell(Sheet_line, 5).value = '域名'
+    w_excel.cell(Sheet_line, 6).value = '备案号'
+    w_excel.cell(Sheet_line, 7).value = '邮箱地址'
+    w_excel.cell(Sheet_line, 8).value = '联系方式'
+    Sheet_line += 1
 
-        for _ in branch_infos:
-            pid, branch_info, icp_info, companyDetail_infos = _["pid"], _["branch_info"], _["icp_info"], _["companyDetail_infos"]
-            entName = branch_info["entName"]
-            emails, telephone = companyDetail_infos["emails"], companyDetail_infos["telephone"]
+    for _ in branch_infos:
+        pid, branch_info, icp_info, companyDetail_infos = _["pid"], _["branch_info"], _["icp_info"], _["companyDetail_infos"]
+        entName = branch_info["entName"]
+        emails, telephone = companyDetail_infos["emails"], companyDetail_infos["telephone"]
 
-            if icp_info:
-                for each_icp in icp_info:
-                    siteName, domain, icpNo = each_icp["siteName"], each_icp["domain"], each_icp["icpNo"]
-                    w_excel.cell(Sheet_line, 1).value = '控股企业'
-                    w_excel.cell(Sheet_line, 2).value = entName
-                    w_excel.cell(Sheet_line, 3).value = pid
-                    w_excel.cell(Sheet_line, 4).value = siteName
-                    w_excel.cell(Sheet_line, 5).value = str(domain)
-                    w_excel.cell(Sheet_line, 6).value = icpNo
-                    w_excel.cell(Sheet_line, 7).value = str(emails)
-                    w_excel.cell(Sheet_line, 8).value = str(telephone)
-                    Sheet_line += 1
-            else:
+        if icp_info:
+            for each_icp in icp_info:
+                siteName, domain, icpNo = each_icp["siteName"], each_icp["domain"], each_icp["icpNo"]
                 w_excel.cell(Sheet_line, 1).value = '控股企业'
                 w_excel.cell(Sheet_line, 2).value = entName
                 w_excel.cell(Sheet_line, 3).value = pid
-                w_excel.cell(Sheet_line, 4).value = ""
-                w_excel.cell(Sheet_line, 5).value = ""
-                w_excel.cell(Sheet_line, 6).value = ""
+                w_excel.cell(Sheet_line, 4).value = siteName
+                w_excel.cell(Sheet_line, 5).value = str(domain)
+                w_excel.cell(Sheet_line, 6).value = icpNo
                 w_excel.cell(Sheet_line, 7).value = str(emails)
                 w_excel.cell(Sheet_line, 8).value = str(telephone)
                 Sheet_line += 1
+        else:
+            w_excel.cell(Sheet_line, 1).value = '控股企业'
+            w_excel.cell(Sheet_line, 2).value = entName
+            w_excel.cell(Sheet_line, 3).value = pid
+            w_excel.cell(Sheet_line, 4).value = ""
+            w_excel.cell(Sheet_line, 5).value = ""
+            w_excel.cell(Sheet_line, 6).value = ""
+            w_excel.cell(Sheet_line, 7).value = str(emails)
+            w_excel.cell(Sheet_line, 8).value = str(telephone)
+            Sheet_line += 1
+    Sheet_line += 2
 
 
 
 
-        excel.save(xlsx_save_name)
+    excel.save(xlsx_save_name)
 
 # 获取基本信息:公司名、邮箱地址、联系方式
 def companyDetail(pid):
@@ -434,12 +435,12 @@ def start(searchContent):
     holds(pid, holds_page)
     branch(pid, branch_page)
 
-    for each in invest_infos:
-        print(each)
-    for each in holds_infos:
-        print(each)
-    for each in branch_infos:
-        print(each)
+    # for each in invest_infos:
+    #     print(each)
+    # for each in holds_infos:
+    #     print(each)
+    # for each in branch_infos:
+    #     print(each)
 
     
 

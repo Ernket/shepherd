@@ -99,10 +99,12 @@ def quake_search(all_config,excel,data,xlsx_save_name,domain,check):
         try:
             if check=="select_domain":
                 w_excel.append([domain,ip,port,title,http_host,http_response,cert,transport,asn,org,country_cn,province_cn,city_cn,district_cn,product_catalog,product_type,product_level,product_vendor,hostname,country_en,province_en,city_en,district_en,isp,body])
+                excel.save(xlsx_save_name)
             elif check=="select_proxy":
                 all_proxys[str(ip)]=port
         except:
             continue
+    
     #,product_catalog,product_type,product_level,product_vendor
     print("[+] quake模块已完成")
     if check=="select_domain":

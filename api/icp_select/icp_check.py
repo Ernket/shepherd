@@ -11,6 +11,23 @@ icp查询from https://github.com/wongzeon/ICP-Checker
 """
 import requests,hashlib,time,base64,cv2,os,sys,json
 
+def get_icp(domain):
+    r = requests.get(url='https://api.vvhan.com/api/icp?url='+str(domain.strip()))
+    js = json.loads(r.text)
+    try:
+        js['message']
+        print(r.text)
+        info=''
+        icp=''
+        return info,icp
+    except: 
+        icp = js['info']['icp']
+        # icp存在两种格式:
+        #   A: 浙B2-20080224-1
+        #   B: 京ICP证030173号-1
+        info = icp if '-' not in icp else icp.split('-')[0] if len(icp.split('-'))==2 else icp.split('-')[0]+'-'+icp.split('-')[1]
+        return info,icp
+
 def icp_domains(domain,excel,xlsx_save_name):
 
     #写入数据的准备工作
@@ -24,17 +41,11 @@ def icp_domains(domain,excel,xlsx_save_name):
         w_excel.append(data)            #添加title
 
     try:
-        r = requests.get(url='https://api.vvhan.com/api/icp?url='+str(domain.strip()))
-        js = json.loads(r.text)
-        icp = js['info']['icp']
-        # icp存在两种格式:
-        #   A: 浙B2-20080224-1
-        #   B: 京ICP证030173号-1
-        info = icp if '-' not in icp else icp.split('-')[0] if len(icp.split('-'))==2 else icp.split('-')[0]+'-'+icp.split('-')[1]
+        info,icp = get_icp(domain)
     except Exception as e:
+        print("[-] icp备案查询模块发生错误次，正在尝试重新运行")
         print(e)
-        info = ''
-        print(r.text)
+        info,icp = get_icp(domain)
     print("[*] {} 对应的备案号为{}".format(domain, icp))
     if info:
         info_data = {
@@ -109,6 +120,7 @@ def icp_domains(domain,excel,xlsx_save_name):
             big_image = p_request.json()['params']['bigImage']
             small_image = p_request.json()['params']['smallImage']
         except KeyError:
+            print(p_request.text)
             print("请重试，请求状态码：",p_request.status_code)
         #解码图片，写入并计算图片缺口位置
         with open('bigImage.jpg','wb') as f:
@@ -220,7 +232,7 @@ def icp_domains(domain,excel,xlsx_save_name):
                 print("是否限制接入：",domain_status)
                 print("审核通过日期：",domain_approve_date)
                 w_excel.append([domain,domain_owner,domain_name,domain_licence,domain_web_licence,domain_type,domain_content_approved,domain_status,domain_approve_date])
-
+            excel.save(xlsx_save_name)
             info_data_page = {
                 'pageNum':i+1,
                 'pageSize':'10',

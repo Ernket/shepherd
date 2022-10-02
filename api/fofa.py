@@ -91,6 +91,7 @@ def fofa_search(all_config,excel,data,xlsx_save_name,domain,check):
                     print(e)
                     link[13]="error"
                     w_excel.append(link)
+                excel.save(xlsx_save_name)
             elif check=="select_proxy":
                 ip=link[0]
                 port=link[1]
