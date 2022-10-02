@@ -18,6 +18,8 @@
 python3 Elapse.py -d <domain> | python3 Elape.py -df <domain_file>
 # 通过公司名查控股等
 python3 Elapse.py -c <company_name> | python3 Elapse.py -cf <company_name_file>
+# 或者查完域名跟着一起查公司信息
+python3 Elapse.py -d <domain> -c <company_name> | python3 Elapse.py -d <domain> -cf <company_name_file>  等等
 # 查代理并验证
 python3 Elapse.py -p
 ```
