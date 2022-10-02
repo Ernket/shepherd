@@ -8,11 +8,11 @@
 - - 获取的子域名会在ip结果中存在内网地址的时候进行host碰撞
 - - 利用fofa搜全网无需认证的代理并验证，免费代理池get
 
-- 脚本编写环境：
+# 脚本编写环境：
 
 - - python3.8.3
 
-- 使用方法
+# 使用方法
 ```
 # 查询域名
 python3 Elapse.py -d <domain> | python3 Elape.py -df <domain_file>
@@ -27,7 +27,7 @@ python3 Elapse.py -p
 ```
 pip install -r requirements.txt
 ```
-- 更新
+# 更新记录
 - - 2022/05/11
 
 1.加入了两个新的模块（hunter、zoomeye）<br>
@@ -52,12 +52,12 @@ pip install -r requirements.txt
 2.icp目前有一些小bug，这个bug非程序上的问题，有时候第一次访问提示出错，但是重新访问的时候就显示正常了，目前的做法是加了一个重试一次的操作，不知道有没有用。。。<br>
 3.修复了爱企查同时查询多个企业的时候，保存的数据有问题的bug<br>
 
-- 计划写的
+# 计划写的
 - - 将其他平台也添加进来（shodan，搜索引擎，还有什么空间测绘可以用的也可以推荐一下）
   - 指纹识别
   - 没检测到config.yaml时，自动生成
   
 
-- 参考项目：
+# 参考项目：
 - - 爱企查、host碰撞模块（https://github.com/0x727/ShuiZe_0x727) 
 - - icp域名备案查询（https://github.com/1in9e/icp-domains）
