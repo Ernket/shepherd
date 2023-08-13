@@ -4,6 +4,7 @@
   "fofa_key": ""
   "fofa_select": "domain=\"%s\" || cert=\"%s\" || host=\"%s\" || cname=\"%s\""
   "fofa_ip": "ip=\"%s\""
+  "vip": false
 
 "quake":
   "enable": true
