@@ -85,7 +85,7 @@ if domains:
 
     for domain in domains:
         fofa_ips={}
-        fofa_data=["目标","ip","端口","title","host","域名","国家","省份","城市","国家全名","header","server","协议","banner","cert","运营商","as_number","as_organization","latitude","longitude","icp","fid","cname","type","jarm"]
+        fofa_data=["目标","ip","端口","title","host","域名","国家","省份","城市","国家全名","header","server","协议","banner","cert","运营商","as_number","as_organization","latitude","longitude","icp","cname","type","jarm"]
         quake_data=["目标","ip","端口","title","域名","网页状态码","cert","传输协议类型","asn","org","国家","省份","城市","区域","框架详情","框架类型","框架等级","供应商","hostname","国家","省份","城市","区域","运营商","Body"]
         zoomeye_data=["目标","域名","时间戳","IP"]
         hunter_data=["目标","url","ip","域名","端口","网站标题","状态码","web服务","is_risk","is_risk_protocol","协议","基础协议","component","系统","公司","number","国家","省份","城市","更新时间","as_org","isp","banner"]
