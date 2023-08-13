@@ -22,7 +22,7 @@ def select_domain(host):
         else:
             return host
 
-def fofa_search(all_config,excel,data,xlsx_save_name,domain,check):
+def fofa_search(all_config,excel,data,xlsx_save_name,domain,check,is_vip):
     if check=="select_domain":
         all_sheet=excel.sheetnames
         all_ip={}
@@ -58,11 +58,17 @@ def fofa_search(all_config,excel,data,xlsx_save_name,domain,check):
     try_num=0
     break_num=3         #失败后尝试的次数，如 =1，则表示只尝试一页
     while True:
-        fofa_search_url = "https://fofa.info/api/v1/search/all?fields=ip,port,title,host,domain,country,province,city,country_name,header,server,protocol,banner,cert,isp,as_number,as_organization,latitude,longitude,icp,fid,cname,type,jarm&page={}&email={}&key={}&qbase64={}&size=10".format(page_num,email,key,str_base64)
+        if is_vip:
+            fofa_search_url = "https://fofa.info/api/v1/search/all?fields=ip,port,title,host,domain,country,province,city,country_name,header,server,protocol,banner,cert,isp,as_number,as_organization,latitude,longitude,icp,fid,cname,type,jarm&page={}&email={}&key={}&qbase64={}&size=10".format(page_num,email,key,str_base64)
+        else:
+            fofa_search_url = "https://fofa.info/api/v1/search/all?fields=ip,port,title,host,domain,country,province,city,country_name,header,server,protocol,banner,cert,isp,as_number,as_organization,latitude,longitude,icp,cname,type,jarm&page={}&email={}&key={}&qbase64={}&size=10".format(page_num,email,key,str_base64)
         #print(fofa_search_url)
         res = requests.get(fofa_search_url, headers=header)
         if 'errmsg' not in res.text:
             result = json.loads(res.text)
+        else:
+            print("fofa脚本执行报错：".format(res.text))
+            break
         
         if len(result['results'])==0:           #如果当前页面返回的数据为0，说明已遍历完成，无需继续
             if try_num<break_num:
